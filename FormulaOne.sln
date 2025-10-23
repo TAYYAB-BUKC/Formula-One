@@ -9,13 +9,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaOne.Entities", "Form
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormulaOne.DataService", "FormulaOne.DataService\FormulaOne.DataService.csproj", "{778D43A8-FA19-466E-AB4A-CE46B01E3520}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B20515BD-3F9B-4C5A-9B95-403549675612}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iac", "iac", "{0AEE4330-24A5-4D6D-8355-99A5912DDFA0}"
+	ProjectSection(SolutionItems) = preProject
+		iac\setup.tf = iac\setup.tf
+		iac\vars.tf = iac\vars.tf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E034389B-DE2A-4D35-B1F0-D939C336BB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +35,13 @@ Global
 		{778D43A8-FA19-466E-AB4A-CE46B01E3520}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{778D43A8-FA19-466E-AB4A-CE46B01E3520}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{778D43A8-FA19-466E-AB4A-CE46B01E3520}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E034389B-DE2A-4D35-B1F0-D939C336BB13} = {B20515BD-3F9B-4C5A-9B95-403549675612}
+		{377F3248-D4FF-4DBD-B341-39B3FF5DB105} = {B20515BD-3F9B-4C5A-9B95-403549675612}
+		{778D43A8-FA19-466E-AB4A-CE46B01E3520} = {B20515BD-3F9B-4C5A-9B95-403549675612}
 	EndGlobalSection
 EndGlobal
