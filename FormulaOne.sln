@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B20515BD-3F9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iac", "iac", "{0AEE4330-24A5-4D6D-8355-99A5912DDFA0}"
 	ProjectSection(SolutionItems) = preProject
+		iac\resource-group.tf = iac\resource-group.tf
 		iac\setup.tf = iac\setup.tf
 		iac\vars.tf = iac\vars.tf
 	EndProjectSection
