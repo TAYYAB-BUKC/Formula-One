@@ -1,0 +1,41 @@
+name: Build and Deploy the Web API to Azure Container App
+
+on:
+    push:
+        branches:
+            - master
+            
+jobs:
+    Build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              id: github-repo-checkout
+              uses: actions/checkout@v4
+
+            - name: Set up .NET Core
+              uses: actions/setup-dotnet@v4
+              with:
+                dotnet-version: 8.0
+
+            - name: Configuring Azure Container Registry
+              uses: azure/docker-login@v2
+              with:
+                login-server: ${{ secrets.ACR_SERVER }}
+                username: ${{ secrets.ACR_USERNAME }}
+                password: ${{ secrets.ACR_PASSWORD }}
+
+            - name: Getting the SHA of the commit
+              id: commit-sha
+              run: |
+                calculatedSHA = $(git reve-parse --short ${{ github-repo-checkout.sha }})
+                echo "::set-output name=sha::$calculatedSHA"
+
+            - name: Build and Deploy Docker Image To ACR
+              env:
+                ACR_REGISTRY: ${{ secrets.ACR_SERVER }}
+                IMAGE_TAG: ${{ steps.commit-sha.outputs.sha }}
+              run: |
+                docker build -f FormulaOne.Dockerfile -t $ACR_REGISTRY/FormulaOneApp:$IMAGE_TAG 
+                -t $ACR_REGISTRY/FormulaOneApp:latest .
+                docker push $ACR_REGISTRY/FormulaOneApp --all-tags
