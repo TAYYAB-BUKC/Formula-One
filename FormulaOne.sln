@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iac", "iac", "{0AEE4330-24A
 		iac\azure-container-app-env.tf = iac\azure-container-app-env.tf
 		iac\azure-container-apps.tf = iac\azure-container-apps.tf
 		iac\resource-group.tf = iac\resource-group.tf
+		iac\azure-sql.tf = iac\azure-sql.tf
 		iac\azure-log-analytics-workspace.tf = iac\azure-log-analytics-workspace.tf
 		iac\azure-container-registry.tf = iac\azure-container-registry.tf
 		iac\setup.tf = iac\setup.tf
