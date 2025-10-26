@@ -8,6 +8,8 @@ on:
 jobs:
   Build-and-deploy:
     runs-on: ubuntu-latest
+    outputs: 
+        sha: steps.commit_sha.outputs.sha
     steps:
       - name: Checkout Repository
         id: github_repo_checkout
@@ -51,3 +53,18 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+        - name: Deploy To Container App
+          uses: azure/container-apps-deploy-action@v1
+          env:
+            IMAGE_TAG: ${{ needs.Build-and-deploy.outputs.sha }}
+            ACR_REGISTRY: ${{ secrets.ACR_SERVER }}
+          with:
+              registryUrl: $ACR_SERVER
+              imageToDeploy: $ACR_REGISTRY/formulaoneapp:$IMAGE_TAG
+              targetPort: 8080
+              ingress: external
+              containerAppName: appdev-ca-dev-cu-formulaone
+              containerAppEnvironment: appdev-cae-dev-cu-formulaone
+              resourceGroup: appdev-rg-dev-cu-formulaone
+              environmentVariables: |
+                ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=https://+:8080
