@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
-              id: github-repo-checkout
+              id: github_repo_checkout
               uses: actions/checkout@v4
 
             - name: Set up .NET Core
@@ -26,15 +26,15 @@ jobs:
                 password: ${{ secrets.ACR_PASSWORD }}
 
             - name: Getting the SHA of the commit
-              id: commit-sha
+              id: commit_sha
               run: |
-                calculatedSHA = $(git rev-parse --short ${{ github-repo-checkout.sha }})
+                calculatedSHA = $(git rev-parse --short ${{ github_repo_checkout.sha }})
                 echo "::set-output name=sha::$calculatedSHA"
 
             - name: Build and Deploy Docker Image To ACR
               env:
                 ACR_REGISTRY: ${{ secrets.ACR_SERVER }}
-                IMAGE_TAG: ${{ steps.commit-sha.outputs.sha }}
+                IMAGE_TAG: ${{ steps.commit_sha.outputs.sha }}
               run: |
                 docker build -f FormulaOne.Dockerfile -t $ACR_REGISTRY/FormulaOneApp:$IMAGE_TAG 
                 -t $ACR_REGISTRY/FormulaOneApp:latest .
