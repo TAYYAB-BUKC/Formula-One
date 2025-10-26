@@ -37,7 +37,7 @@ jobs:
           IMAGE_TAG: ${{ steps.commit_sha.outputs.sha }}
         run: |
           docker build -f FormulaOne.Dockerfile \
-            -t $ACR_REGISTRY/FormulaOneApp:$IMAGE_TAG \
-            -t $ACR_REGISTRY/FormulaOneApp:latest .
-          docker push $ACR_REGISTRY/FormulaOneApp:$IMAGE_TAG
-          docker push $ACR_REGISTRY/FormulaOneApp:latest
+            -t $ACR_REGISTRY/formulaoneapp:$IMAGE_TAG \
+            -t $ACR_REGISTRY/formulaoneapp:latest .
+          docker push $ACR_REGISTRY/formulaoneapp:$IMAGE_TAG
+          docker push $ACR_REGISTRY/formulaoneapp:latest
