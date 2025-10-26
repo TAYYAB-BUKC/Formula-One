@@ -58,6 +58,7 @@ jobs:
           env:
             IMAGE_TAG: ${{ needs.Build-and-deploy.outputs.sha }}
             ACR_REGISTRY: ${{ secrets.ACR_SERVER }}
+            CONNECTION_STRING: ${{ secrets.CONNECTION_STRING }}
           with:
               registryUrl: $ACR_SERVER
               imageToDeploy: $ACR_REGISTRY/formulaoneapp:$IMAGE_TAG
@@ -67,4 +68,5 @@ jobs:
               containerAppEnvironment: appdev-cae-dev-cu-formulaone
               resourceGroup: appdev-rg-dev-cu-formulaone
               environmentVariables: |
-                ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://+:8080
+                ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://+:8080 
+                ConnectionStrings__DefaultConnectionMsSql=$CONNECTION_STRING
