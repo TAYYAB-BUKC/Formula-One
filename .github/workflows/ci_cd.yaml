@@ -9,7 +9,7 @@ jobs:
   Build-and-deploy:
     runs-on: ubuntu-latest
     outputs: 
-        sha: steps.commit_sha.outputs.sha
+        sha: ${{ steps.commit_sha.outputs.sha }}
     steps:
       - name: Checkout Repository
         id: github_repo_checkout
