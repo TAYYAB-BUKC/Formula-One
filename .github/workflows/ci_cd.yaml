@@ -41,3 +41,13 @@ jobs:
             -t $ACR_REGISTRY/formulaoneapp:latest .
           docker push $ACR_REGISTRY/formulaoneapp:$IMAGE_TAG
           docker push $ACR_REGISTRY/formulaoneapp:latest
+
+  Deploy-container-to-ACS:
+    runs-on: ubuntu-latest
+    needs: Build-and-deploy
+    steps:
+        - name: Login To Azure
+          uses: azure/login@v2
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
