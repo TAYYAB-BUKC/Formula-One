@@ -42,6 +42,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContextService = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    if((await dbContextService.Database.GetPendingMigrationsAsync()).Any())
+    {
+        await dbContextService.Database.MigrateAsync();
+	}
+}
+
 app.UseAuthorization();
 
 app.MapControllers();
