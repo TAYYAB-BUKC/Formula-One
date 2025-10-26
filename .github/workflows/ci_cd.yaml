@@ -28,7 +28,7 @@ jobs:
             - name: Getting the SHA of the commit
               id: commit-sha
               run: |
-                calculatedSHA = $(git reve-parse --short ${{ github-repo-checkout.sha }})
+                calculatedSHA = $(git rev-parse --short ${{ github-repo-checkout.sha }})
                 echo "::set-output name=sha::$calculatedSHA"
 
             - name: Build and Deploy Docker Image To ACR
