@@ -67,4 +67,4 @@ jobs:
               containerAppEnvironment: appdev-cae-dev-cu-formulaone
               resourceGroup: appdev-rg-dev-cu-formulaone
               environmentVariables: |
-                ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=https://+:8080
+                ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_URLS=http://+:8080
