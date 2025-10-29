@@ -32,3 +32,15 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: ./iac/
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./iac/
+      
+      - name: Terraform Plan
+        run: terraform plan --out=my-terraform-plan
+        working-directory: ./iac/
+
+      - name: Terraform Apply
+        run: terraform apply --auto-appprove my-terraform-plan
+        working-directory: ./iac/
