@@ -48,3 +48,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-appprove my-terraform-plan
         working-directory: ./iac/
+
+      - name: Notify Failure
+        if: failure()
+        run: echo "Terraform apply failed for ${{ github.ref_name }}"
